@@ -1,6 +1,10 @@
 pipeline{
     
+<<<<<<< HEAD
     agent {label "dev"};
+=======
+    agent { label "dev"};
+>>>>>>> 1bbd80e4709941698f762c7d23b3f1c77bf325f8
     stages{
         stage("Code"){
             steps{
