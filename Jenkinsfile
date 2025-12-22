@@ -1,6 +1,6 @@
 pipeline{
     
-    agent any;
+    agent {label "dev"};
     stages{
         stage("Code"){
             steps{
@@ -9,7 +9,7 @@ pipeline{
         }
         stage("Build"){
             steps{
-               sh "docker build -t two-tier-flask-app ."
+               sh "docker build -t flask-app ."
             }
         }
         stage("Test"){
@@ -38,5 +38,23 @@ pipeline{
         }
         
     }
+    post{
+        success{
+            script{
+                emailext from: "shubham.aswekar12@gmail.com",
+                to: "shubham1styearengg@gmail.com",
+                body: "Build Successfull for flask-app",
+                subject: "Build Success for flask-app"
+            }
+        }
+        failure{
+            script{
+                emailext from: "shubham.aswekar12@gmail.com",
+                to: "shubham1styearengg@gmail.com",
+                body: "Build Failed for flask-app",
+                subject: "Build Failed for flask-app"
+            }
+        }
+    }
     
-}
+}    
